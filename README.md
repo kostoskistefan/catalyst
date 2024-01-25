@@ -6,12 +6,13 @@ For a more straightforward usage, add the `catalyst.py` file to your PATH.
 
 ## Script arguments
 
-| Argument         | Description                                            | Default values       |
-| ---              | ---                                                    | ---                  |
-| **name**         | Name of the project                                    | No default, required |
-| **type**         | Type of the project (library or executable)            | executable           |
-| **license**      | Which license to use for the project (MIT or GPL)      | MIT                  |
-| **enable-tests** | Whether to enable test file generation (true or false) | false                |
+| Argument            | Description                                                                            | Default values       |
+| ---                 | ---                                                                                    | ---                  |
+| **name**            | Name of the project                                                                    | No default, required |
+| **type**            | Type of the project (library or executable)                                            | executable           |
+| **license**         | Which license to use for the project (MIT or GPL)                                      | MIT                  |
+| **enable-tests**    | Whether to enable test file generation for library projects (true or false)            | false                |
+| **enable-examples** | Whether to enable compilation of example proejcts for library projects (true or false) | false                |
 
 ## Example Usage
 
@@ -27,3 +28,7 @@ or more explicitly:
 #### GPL application with tests
 
 `catalyst.py --name my_app --type executable --license GPL --enable-tests true`
+
+#### GPL library with tests and examples
+
+`catalyst.py --name my_lib --type library --license GPL --enable-tests true --enable-examples true`

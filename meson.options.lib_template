@@ -1,0 +1,2 @@
+option('enable_tests', type: 'boolean', value: $$PROJECT_TESTS_ENABLED$$, description: 'Whether to enable tests for the project')
+option('enable_examples', type: 'boolean', value: $$PROJECT_EXAMPLES_ENABLED$$, description: 'Whether to compile the example projects included the library')

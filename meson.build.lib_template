@@ -37,6 +37,15 @@ $$PROJECT_NAME$$_dep = declare_dependency(
 pkg = import('pkgconfig')
 pkg.generate($$PROJECT_NAME$$_lib)
 
+# Build the example project
+if get_option('enable_examples')
+  $$PROJECT_NAME$$_executable = executable(
+    'example-$$PROJECT_NAME_HYPHEN$$',
+    'examples/example_$$PROJECT_NAME$$.c',
+    dependencies: [$$PROJECT_NAME$$_dep],
+  )
+endif
+
 # Testing
 if get_option('enable_tests')
 cmocka_dep = dependency('cmocka')
