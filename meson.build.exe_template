@@ -1,0 +1,32 @@
+project(
+  '$$PROJECT_NAME_HYPHEN$$',
+  'c',
+  version: '1.0.0',
+  license: '$$PROJECT_LICENSE$$'
+)
+
+$$PROJECT_NAME$$_dependencies = [
+]
+
+$$PROJECT_NAME$$_sources = [
+  'source/$$PROJECT_NAME$$.c',
+]
+
+$$PROJECT_NAME$$_executable = executable(
+  '$$PROJECT_NAME_HYPHEN$$',
+  $$PROJECT_NAME$$_sources,
+  dependencies: $$PROJECT_NAME$$_dependencies,
+)
+
+# Testing
+if get_option('enable_tests')
+cmocka_dep = dependency('cmocka')
+
+test('$$PROJECT_NAME$$_test',
+  executable(
+    '$$PROJECT_NAME_HYPHEN$$',
+    'test/$$PROJECT_NAME$$.c',
+    dependencies: [$$PROJECT_NAME$$_dep, cmocka_dep],
+  )
+)
+endif

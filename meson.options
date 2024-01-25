@@ -1,0 +1,1 @@
+option('enable_tests', type: 'boolean', value: $$PROJECT_TESTS_ENABLED$$, description: 'Whether to enable tests for the project')

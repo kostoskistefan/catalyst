@@ -1,0 +1,51 @@
+project(
+  '$$PROJECT_NAME_HYPHEN$$',
+  'c',
+  version: '1.0.0',
+  license: '$$PROJECT_LICENSE$$',
+  default_options: [
+    'default_library=static'
+  ],
+)
+
+install_headers('include/$$PROJECT_NAME$$.h')
+$$PROJECT_NAME$$_include_directories = include_directories('include')
+
+$$PROJECT_NAME$$_dependencies = [
+]
+
+$$PROJECT_NAME$$_sources = [
+  'source/$$PROJECT_NAME$$.c',
+]
+
+# Library Target
+$$PROJECT_NAME$$_lib = library(
+  '$$PROJECT_NAME_HYPHEN$$',
+  $$PROJECT_NAME$$_sources,
+  dependencies: $$PROJECT_NAME$$_dependencies,
+  include_directories: $$PROJECT_NAME$$_include_directories,
+  install: true,
+)
+
+# Declare a dependency for the library
+$$PROJECT_NAME$$_dep = declare_dependency(
+  include_directories: $$PROJECT_NAME$$_include_directories, 
+  link_with: $$PROJECT_NAME$$_lib,
+)
+
+# Generate pkg-config file for the library
+pkg = import('pkgconfig')
+pkg.generate($$PROJECT_NAME$$_lib)
+
+# Testing
+if get_option('enable_tests')
+cmocka_dep = dependency('cmocka')
+
+test('$$PROJECT_NAME$$_test',
+  executable(
+    '$$PROJECT_NAME_HYPHEN$$',
+    'test/$$PROJECT_NAME$$.c',
+    dependencies: [$$PROJECT_NAME$$_dep, cmocka_dep],
+  )
+)
+endif
