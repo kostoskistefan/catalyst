@@ -60,7 +60,11 @@ def generate_files(args):
     shutil.copyfile(catalyst_directory / '.clang-format', '.clang-format')
 
     # Source file
-    shutil.copyfile(catalyst_directory / str(args['project_license'].lower() + '_template.txt'), 'source/' + args['project_name_underscore'] + '.c')
+    if args['project_type'] == 'executable':
+        shutil.copyfile(catalyst_directory / str(args['project_license'].lower() + '_template.txt'), 'source/main.c')
+
+    elif args['project_type'] == 'library':
+        shutil.copyfile(catalyst_directory / str(args['project_license'].lower() + '_template.txt'), 'source/' + args['project_name_underscore'] + '.c')
 
     # Header file
     if args['project_type'] == 'library':
@@ -75,18 +79,24 @@ def generate_files(args):
 
 
 def replace_template_definitions_in_files(args):
+    source_name = 'main'
+
+    if args['project_type'] == 'library':
+        source_name = args['project_name_underscore']
+    
     # Meson build file
     file = pathlib.Path('meson.build') 
   
     data = file.read_text() 
     data = data.replace('$$PROJECT_NAME$$', args['project_name_underscore']) 
+    data = data.replace('$$PROJECT_SOURCE_NAME$$', source_name)
     data = data.replace('$$PROJECT_NAME_HYPHEN$$', args['project_name_hyphen']) 
     data = data.replace('$$PROJECT_LICENSE$$', args['project_license']) 
   
     file.write_text(data)  
 
     # Source file
-    file = pathlib.Path('source/' + args['project_name_underscore'] + '.c') 
+    file = pathlib.Path('source/' + source_name + '.c') 
   
     data = file.read_text() 
     data = data.replace('$$FILE_NAME$$', args['project_name_underscore'] + '.c') 

@@ -2,14 +2,17 @@ project(
   '$$PROJECT_NAME_HYPHEN$$',
   'c',
   version: '1.0.0',
-  license: '$$PROJECT_LICENSE$$'
+  license: '$$PROJECT_LICENSE$$',
+  default_options: [
+    'warning_level=3'
+  ],
 )
 
 $$PROJECT_NAME$$_dependencies = [
 ]
 
 $$PROJECT_NAME$$_sources = [
-  'source/$$PROJECT_NAME$$.c',
+  'source/$$PROJECT_SOURCE_NAME$$.c',
 ]
 
 $$PROJECT_NAME$$_executable = executable(

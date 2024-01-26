@@ -5,6 +5,7 @@ project(
   license: '$$PROJECT_LICENSE$$',
   default_options: [
     'default_library=static'
+    'warning_level=3'
   ],
 )
 
@@ -15,7 +16,7 @@ $$PROJECT_NAME$$_dependencies = [
 ]
 
 $$PROJECT_NAME$$_sources = [
-  'source/$$PROJECT_NAME$$.c',
+  'source/$$PROJECT_SOURCE_NAME$$.c',
 ]
 
 # Library Target
