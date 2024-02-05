@@ -51,9 +51,9 @@ endif
 if get_option('enable_tests')
 cmocka_dep = dependency('cmocka')
 
-test('$$PROJECT_NAME$$_test',
+test('$$PROJECT_NAME_HYPHEN$$-test',
   executable(
-    '$$PROJECT_NAME_HYPHEN$$',
+    '$$PROJECT_NAME$$_test',
     'test/$$PROJECT_NAME$$.c',
     dependencies: [$$PROJECT_NAME$$_dep, cmocka_dep],
   )
